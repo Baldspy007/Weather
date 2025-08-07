@@ -1,1 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Location Grabber</title>
+</head>
+<body>
+  <h1>Test Location Grabber</h1>
+  <p>Click the button to share your location:</p>
+  <button onclick="getLocation()">Get Location</button>
+
+  <script>
+    function getLocation() {
+      if (!navigator.geolocation) {
+        alert("Geolocation not supported");
+        return;
+      }
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const acc = position.coords.accuracy;
+
+          alert(`Latitude: ${lat}\nLongitude: ${lon}\nAccuracy: ${acc} meters`);
+          console.log("Latitude:", lat);
+          console.log("Longitude:", lon);
+          console.log("Accuracy:", acc);
+        },
+        (error) => {
+          alert("Error getting location: " + error.message);
+          console.error(error);
+        }
+      );
+    }
+  </script>
+</body>
+</html>
+
 
